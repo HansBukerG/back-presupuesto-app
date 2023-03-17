@@ -1,13 +1,11 @@
-import User from './models/User.js';
+import { User } from "../models/User.js";
 
-// CREATE
-async function createUser(name, lastName, email, password) {
+const createUser = async (name, lastName, email, password) => {
   const user = await User.create({ name, lastName, email, password });
   return user.toJSON();
-}
+};
 
-// READ
-async function getUsers() {
+const getUsers = async () => {
   const users = await User.findAll();
   const result = [];
   for (const user of users) {
@@ -16,7 +14,7 @@ async function getUsers() {
   return result;
 }
 
-async function getUserById(id) {
+const getUserById = async (id) => {
   const user = await User.findByPk(id);
   if (user) {
     return user.toJSON();
@@ -25,8 +23,7 @@ async function getUserById(id) {
   }
 }
 
-// UPDATE
-async function updateUser(id, name, lastName, email, password) {
+const updateUser = async (id, name, lastName, email, password) => {
   const user = await User.findByPk(id);
   if (user) {
     user.name = name;
@@ -40,8 +37,7 @@ async function updateUser(id, name, lastName, email, password) {
   }
 }
 
-// DELETE
-async function deleteUser(id) {
+const deleteUser = async (id) => {
   const user = await User.findByPk(id);
   if (user) {
     await user.destroy();
@@ -51,17 +47,22 @@ async function deleteUser(id) {
   }
 }
 
-// USER CHECK
-async function userCheck(email, password) {
+const userCheck = async (email) => {
+  const user = await User.findOne({ where: { email } });
+  return user !== null;
+}
+
+const loginCheck = async (email, password) => {
   const user = await User.findOne({ where: { email, password } });
   return user !== null;
 }
 
-export default {
+export {
   createUser,
   getUsers,
   getUserById,
   updateUser,
   deleteUser,
   userCheck,
+  loginCheck
 };
