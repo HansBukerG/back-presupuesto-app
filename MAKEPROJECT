@@ -3,7 +3,7 @@ npm init -y
 npm i jest nodemon supertest --save-dev
 
 Dependencies:
-npm i axios dotenv express cors sequelize mysql2 --save
+npm i axios dotenv express cors sequelize jsonwebtoken --save
 
 Database dependencies:
 npm install --save pg pg-hstore # Postgres

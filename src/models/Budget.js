@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/dbConnect.database.js';
-import User from './User.js';
+import { User } from './User.js';
 
 const Budget = sequelize.define('Budget', {
   id: {
@@ -26,4 +26,4 @@ const Budget = sequelize.define('Budget', {
   },
 });
 
-export default Budget;
+export { Budget };

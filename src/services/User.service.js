@@ -1,5 +1,6 @@
 import { User } from "../models/User.js";
 
+
 const createUser = async (name, lastName, email, password) => {
   const user = await User.create({ name, lastName, email, password });
   return user.toJSON();
@@ -54,7 +55,7 @@ const userCheck = async (email) => {
 
 const loginCheck = async (email, password) => {
   const user = await User.findOne({ where: { email, password } });
-  return user !== null;
+  return user;
 }
 
 export {
