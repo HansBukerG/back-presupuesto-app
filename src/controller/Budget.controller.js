@@ -2,9 +2,12 @@ import 'dotenv/config.js';
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import { createBudget,getBudgets } from '../services/Budget.service.js';
+import { loginCheck } from '../services/User.service.js';
 
 const postBudget = async (req,res) => {
+
     try {
+
         const authData = await promisify(jwt.verify)(req.token, process.env.JWT_SECRET_KEY);
         let budgetData = req.body
         const budget = await createBudget(budgetData.name,budgetData.description,authData.user.id) 
@@ -24,5 +27,13 @@ const getBudget = async(req,res) => {
     }
 }
 
+const getBudgetById = async (req,res) => {
+    try {
+        const authData = await promisify(jwt.verify)(req.token, process.env.JWT_SECRET_KEY);
+    } catch (error) {
+        
+    }
+}
 
-export { postBudget, getBudget }
+
+export { postBudget, getBudget, getBudgetById }
