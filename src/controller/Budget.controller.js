@@ -2,7 +2,6 @@ import 'dotenv/config.js';
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import { createBudget,getBudgets } from '../services/Budget.service.js';
-import { loginCheck } from '../services/User.service.js';
 
 const postBudget = async (req,res) => {
 
