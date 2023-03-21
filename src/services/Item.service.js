@@ -1,4 +1,4 @@
-import { Item } from "../models/Item";
+import { Item } from "../models/Item.js";
 
 const createItem = async (name, description, price, id_budget) => {
     const item = await Item.create({ name, description, price, id_budget });
